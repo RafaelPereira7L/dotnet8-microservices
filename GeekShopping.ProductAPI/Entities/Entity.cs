@@ -10,8 +10,10 @@ public class Entity
     public Guid Id { get; set; }
     
     [Timestamp]
+    [DataType(DataType.DateTime)]
     public DateTime CreatedAt { get; set; }
-    
+
     [Timestamp]
-    public DateTime? UpdatedAt { get; set; }
+    [DataType(DataType.DateTime)]
+    public DateTime UpdatedAt { get; set; }
 }

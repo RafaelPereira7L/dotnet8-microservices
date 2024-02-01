@@ -51,10 +51,17 @@ public class ProductRepository : IProductRepository
 
     public async Task<ProductDTO?> UpdateProductAsync(ProductDTO product)
     {
-        var productEntity = _mapper.Map<Entities.Product>(product);
-        _context.Products.Update(productEntity);
+        var existingProduct = await _context.Products.FindAsync(product.Id);
+        if (existingProduct == null)
+        {
+            return null;
+        }
+        
+        existingProduct.UpdatedAt = DateTime.UtcNow;
+        
+        _mapper.Map(product, existingProduct);
         await _context.SaveChangesAsync();
-        return _mapper.Map<ProductDTO>(productEntity);
+        return _mapper.Map<ProductDTO>(existingProduct);
     }
 
     public async Task<bool> DeleteProductAsync(Guid id)

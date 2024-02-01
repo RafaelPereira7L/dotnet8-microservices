@@ -40,11 +40,11 @@ public class ProductsController : ControllerBase
         return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, product);
     }
     
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateProduct(Guid id, [FromBody] ProductDTO productDTO)
+    [HttpPut]
+    public async Task<IActionResult> UpdateProduct([FromBody] ProductDTO productDTO)
     {
-        await _productRepository.UpdateProductAsync(productDTO);
-        return NoContent();
+        var product = await _productRepository.UpdateProductAsync(productDTO);
+        return Ok(product);
     }
     
     [HttpDelete("{id}")]

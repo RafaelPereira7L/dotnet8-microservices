@@ -1,0 +1,54 @@
+@model IEnumerable<GeekShopping.WebUI.Models.ProductModel>
+
+<div class="flex justify-center items-center">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="flex justify-end items-center my-2 text-white font-bold">
+            <a class="px-4 py-2 rounded-md bg-blue-600" asp-action="Create">Create new Product</a>
+        </div>
+        <table class="w-full text-sm text-left rtl:text-right text-zinc-500 dark:text-zinc-400 rounded-lg">
+            <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Category
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            
+            @foreach (var item in Model)
+            {
+                <tr class="odd:bg-white odd:dark:bg-zinc-800 even:bg-zinc-50 even:dark:bg-zinc-800 border-b dark:border-zinc-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-zinc-800 whitespace-nowrap dark:text-white">
+                        @item.Name
+                    </th>
+                    <td class="px-6 py-4">
+                        @item.Description
+                    </td>
+                    <td class="px-6 py-4">
+                        @item.CategoryName
+                    </td>
+                    <td class="px-6 py-4">
+                        R$ @item.Price
+                    </td>
+                    <td class="flex items-center px-6 py-4 gap-2">
+                        <a asp-action="Update" asp-route-id="@item.Id" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"  class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                    </td>
+                </tr>   
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

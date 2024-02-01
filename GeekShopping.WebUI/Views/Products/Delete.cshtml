@@ -1,0 +1,27 @@
+@model GeekShopping.WebUI.Models.ProductModel
+
+<div class="container mx-auto py-8">
+    <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">Delete Product</h1>
+    <form asp-action="Delete" class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+        <input asp-for="Id" type="text" id="id" name="id" hidden>
+        
+        <div class="flex justify-center items-center gap-4 w-full">
+            <a
+                asp-action="Index" class="bg-zinc-500 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-zinc-600 transition duration-300">
+                Back
+            </a>
+
+            <button
+                class="w-full bg-red-500 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-red-600 transition duration-300"
+                type="submit">
+                Delete
+            </button>
+
+        </div>
+   
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+}
